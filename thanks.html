@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Спасибо! Твой разбор Quanta готов</title>
+<style>
+  :root { --bg:#07070C; --surface:#11111B; --fg:#F4F4F7; --muted:#9AA0AE; --line:#24243A; --line2:#2E2E44; --purple:#8B6BFF; --teal:#00E5C7; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--fg); line-height:1.55; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .blob { position:fixed; border-radius:50%; filter:blur(120px); opacity:0.25; z-index:0; pointer-events:none; }
+  .blob-1 { width:420px; height:420px; background:var(--purple); top:-120px; left:-120px; }
+  .blob-2 { width:360px; height:360px; background:var(--teal); bottom:-140px; right:-120px; opacity:0.16; }
+  .card { position:relative; z-index:1; max-width:540px; width:100%; text-align:center; }
+  .check { width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--purple)); display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:32px; }
+  h1 { font-size:34px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; margin-bottom:14px; }
+  .lead { color:var(--muted); font-size:17px; margin-bottom:34px; }
+  .pdf-btns { display:flex; flex-direction:column; gap:12px; margin-bottom:28px; }
+  .pdf-btn { display:flex; align-items:center; justify-content:space-between; background:var(--surface); border:1px solid var(--line2); border-radius:14px; padding:18px 22px; text-decoration:none; color:var(--fg); transition:border-color .15s ease, transform .15s ease; text-align:left; }
+  .pdf-btn:hover { transform:translateY(-2px); }
+  .pdf-btn.main { border-color:var(--teal); background:linear-gradient(160deg,rgba(0,229,199,0.12),rgba(17,17,27,0.6)); }
+  .pdf-btn .t { font-weight:700; font-size:16px; }
+  .pdf-btn .s { font-size:13px; color:var(--muted); margin-top:2px; }
+  .pdf-btn .arrow { font-size:20px; color:var(--teal); }
+  .tip { color:var(--muted); font-size:14px; margin-bottom:24px; }
+  .back { color:var(--teal); font-size:15px; text-decoration:none; }
+  .back:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<div class="card">
+  <div class="check">✓</div>
+  <h1>Готово. Твой разбор внутри.</h1>
+  <p class="lead">Письмо тоже придёт на почту. А пока — открывай разбор прямо сейчас. Рекомендую начать с полного: там обе модели и как выбрать свою.</p>
+
+  <div class="pdf-btns">
+    <a class="pdf-btn main" href="pdf-3-combo.html" target="_blank">
+      <span><span class="t">📘 Полный разбор: две модели заработка</span><span class="s">с чего начать и как выбрать свою — рекомендуем</span></span>
+      <span class="arrow">→</span>
+    </a>
+    <a class="pdf-btn" href="pdf-1-blogger.html" target="_blank">
+      <span><span class="t">🎯 Blogger-модель</span><span class="s">рекомендуй — бери 50% с каждой покупки</span></span>
+      <span class="arrow">→</span>
+    </a>
+    <a class="pdf-btn" href="pdf-2-protocol.html" target="_blank">
+      <span><span class="t">🏗 Protocol-модель</span><span class="s">строй систему — расти долю в экономике</span></span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <p class="tip">💡 Чтобы сохранить как файл: открой разбор → Ctrl+P → «Сохранить как PDF».</p>
+  <a class="back" href="index.html">← Вернуться на сайт</a>
+</div>
+
+</body>
+</html>

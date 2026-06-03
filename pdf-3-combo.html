@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quanta Tech — Две модели заработка: какая твоя?</title>
+<style>
+  :root { --purple:#7C5BFF; --teal:#00B89E; --ink:#15151F; --muted:#5A5A6B; --line:#E4E4EC; --bg:#FFFFFF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  .page { max-width:760px; margin:0 auto; padding:56px 48px; }
+  .cover { min-height:92vh; display:flex; flex-direction:column; justify-content:center; }
+  .kicker { font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; margin-bottom:18px; }
+  .kicker.t { color:var(--teal); } .kicker.p { color:var(--purple); } .kicker.n { color:var(--muted); }
+  h1 { font-size:42px; line-height:1.1; letter-spacing:-0.03em; font-weight:800; margin-bottom:22px; }
+  h2 { font-size:27px; letter-spacing:-0.02em; font-weight:800; margin:8px 0 16px; }
+  h3 { font-size:19px; font-weight:700; margin:22px 0 8px; }
+  p { color:var(--ink); margin-bottom:14px; font-size:16px; }
+  .muted { color:var(--muted); }
+  .lead { font-size:19px; color:var(--muted); max-width:560px; }
+  .teal { color:var(--teal); } .pp { color:var(--purple); }
+  .pill { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted); margin-bottom:24px; }
+  .reframe { font-size:25px; font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin:18px 0; }
+  .box { background:#F7F7FB; border:1px solid var(--line); border-radius:16px; padding:26px; margin:20px 0; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+  .mcard { border-radius:16px; padding:24px; border:1px solid var(--line); }
+  .mcard.b { background:linear-gradient(160deg,rgba(0,184,158,0.09),rgba(247,247,251,0.5)); border-color:rgba(0,184,158,0.3); }
+  .mcard.p { background:linear-gradient(160deg,rgba(124,91,255,0.09),rgba(247,247,251,0.5)); border-color:rgba(124,91,255,0.3); }
+  .mcard .tag { font-size:12px; text-transform:uppercase; letter-spacing:0.07em; font-weight:700; margin-bottom:8px; }
+  .mcard.b .tag { color:var(--teal); } .mcard.p .tag { color:var(--purple); }
+  .mcard h3 { margin-top:0; font-size:20px; }
+  .mcard ul { list-style:none; margin:12px 0 0; }
+  .mcard li { padding:6px 0 6px 22px; position:relative; font-size:15px; }
+  .mcard.b li:before { content:"→"; position:absolute; left:0; color:var(--teal); font-weight:700; }
+  .mcard.p li:before { content:"→"; position:absolute; left:0; color:var(--purple); font-weight:700; }
+  table { width:100%; border-collapse:collapse; margin:18px 0; font-size:15px; }
+  th,td { text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.04em; }
+  .q { background:#F7F7FB; border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:12px 0; }
+  .q b { color:var(--ink); }
+  .cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px; }
+  .cta-card { border-radius:18px; padding:28px; text-align:center; color:#fff; }
+  .cta-card.b { background:var(--ink); }
+  .cta-card.p { background:var(--purple); }
+  .cta-card h3 { color:#fff; margin:0 0 6px; font-size:20px; }
+  .cta-card .desc { font-size:14px; margin-bottom:16px; }
+  .cta-card.b .desc { color:#B9B9C8; } .cta-card.p .desc { color:#E5DEFF; }
+  .cta-card a { display:inline-block; font-weight:700; padding:13px 22px; border-radius:11px; text-decoration:none; font-size:15px; }
+  .cta-card.b a { background:var(--teal); color:#04110E; }
+  .cta-card.p a { background:#fff; color:var(--purple); }
+  .cta-card .url { font-size:11px; margin-top:12px; word-break:break-all; }
+  .cta-card.b .url { color:#7A7A8B; } .cta-card.p .url { color:#D6CCFF; }
+  .link { color:var(--teal); word-break:break-all; font-size:14px; }
+  footer { border-top:1px solid var(--line); padding:24px 0; text-align:center; color:var(--muted); font-size:13px; }
+  @media print {
+    .page { padding:40px; }
+    .cover { min-height:auto; padding-top:80px; padding-bottom:80px; }
+    .pagebreak { page-break-before:always; }
+    a { color:var(--ink); }
+    @page { margin:1.2cm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="pill">Quanta Tech · полный разбор заработка</div>
+  <div class="kicker n">Бесплатный разбор</div>
+  <h1>В Quanta два способа<br>зарабатывать.<br>Этот PDF поможет<br>выбрать <span class="teal">твой</span>.</h1>
+  <p class="lead">Одна экосистема, 21+ инструмент, одна подписка. Но дальше — развилка. Кто-то берёт процент здесь и сейчас. Кто-то строит долю на годы вперёд. Давай разберём обе, чтобы ты не гадал.</p>
+</section>
+
+<!-- THE FORK -->
+<section class="page pagebreak">
+  <div class="kicker n">Суть</div>
+  <h2>Одна подписка. Две двери.</h2>
+  <p>Quanta — это 21+ AI-инструмента под одной крышей за €150 в месяц вместо $500 разрозненных подписок. Без банов по гео, без аренды чужих аккаунтов. Это база, которая одинакова для всех.</p>
+  <div class="reframe">AI должен возвращать деньги,<br>а не сжирать их.</div>
+  <p>А вот <b>как именно</b> он будет возвращать — выбираешь ты. Две модели работают с первого дня. Можно начать с одной и перейти в другую.</p>
+  <div class="two">
+    <div class="mcard b">
+      <div class="tag">🎯 Blogger</div>
+      <h3>Деньги сейчас</h3>
+      <ul>
+        <li>50% с каждой продажи по ссылке</li>
+        <li>€75 / €202 / €720 с тарифов</li>
+        <li>USDC каждую полночь UTC</li>
+        <li>Просто: кинул ссылку — получил</li>
+      </ul>
+    </div>
+    <div class="mcard p">
+      <div class="tag">🏗 Protocol</div>
+      <h3>Доля вдолгую</h3>
+      <ul>
+        <li>Доля в экономике, не процент</li>
+        <li>Растёт от активности и сети</li>
+        <li>Ранние тиры — ×4 к токену</li>
+        <li>World Pool для топ-вклада</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SIDE BY SIDE -->
+<section class="page pagebreak">
+  <div class="kicker n">Сравнение</div>
+  <h2>Чем они реально отличаются.</h2>
+  <table>
+    <tr><th>Параметр</th><th>🎯 Blogger</th><th>🏗 Protocol</th></tr>
+    <tr><td><b>Что получаешь</b></td><td>Фиксированный процент</td><td>Долю общего пула</td></tr>
+    <tr><td><b>Ставка</b></td><td>50% с прямой продажи</td><td>Зависит от вклада (Performance Points)</td></tr>
+    <tr><td><b>Потолок</b></td><td>Линейный: продал — получил</td><td>Растущий: строишь — доля увеличивается</td></tr>
+    <tr><td><b>Когда платят</b></td><td colspan="2" style="text-align:center;">Обе — каждую полночь UTC в USDC, без холда</td></tr>
+    <tr><td><b>Кому заходит</b></td><td>Блогеры, фрилансеры, контент-мейкеры</td><td>Предприниматели, лидеры команд, строители</td></tr>
+    <tr><td><b>Сложность</b></td><td>Минимальная</td><td>Выше — но и потолок выше</td></tr>
+  </table>
+  <div class="reframe">Blogger платит за <span class="teal">действие</span>.<br>Protocol платит за <span class="pp">вклад</span>.</div>
+</section>
+
+<!-- WHICH ONE -->
+<section class="page pagebreak">
+  <div class="kicker n">Как выбрать</div>
+  <h2>Ответь себе на три вопроса.</h2>
+  <div class="q"><b>1. У тебя есть аудитория, которой ты что-то рекомендуешь?</b><br><span class="muted">Канал, блог, чат, круг знакомых, которые тебе доверяют → начни с <span class="teal">Blogger</span>. Самый быстрый путь к первой выплате.</span></div>
+  <div class="q"><b>2. Ты ведёшь команду или строишь сообщество?</b><br><span class="muted">Если люди идут за тобой и ты мыслишь системно → <span class="pp">Protocol</span> даст тебе долю, которая растёт вместе с сетью.</span></div>
+  <div class="q"><b>3. Сомневаешься?</b><br><span class="muted">Начни с <span class="teal">Blogger</span> — он понятен с первой минуты и не требует навыков продаж. В Protocol перейдёшь, когда захочешь строить, а не просто рекомендовать.</span></div>
+  <div class="box">
+    <p style="margin:0;"><b>Важно про ранний вход.</b> Обе модели участвуют в распределении токена по тирам. После 10 000 участников окно закрывается. Чем раньше зашёл — тем выше множитель (до ×4 в Тире 1). Поэтому выбор модели можно докрутить позже, а вот дата входа фиксируется сейчас.</p>
+  </div>
+</section>
+
+<!-- DUAL CTA -->
+<section class="page pagebreak">
+  <div class="kicker n">Твой ход</div>
+  <h2>Выбери дверь и зайди.</h2>
+  <p>Самое дорогое решение — не выбрать ни одну и остаться платить за пять подписок без отдачи. Бери ту модель, что ближе. Ссылка фиксирует твой вход и твой тир.</p>
+
+  <div class="cta-grid">
+    <div class="cta-card b">
+      <h3>🎯 Blogger</h3>
+      <div class="desc">Рекомендую — беру 50%</div>
+      <a href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI">Зайти →</a>
+      <div class="url">code=ML2DYYBOQQCTC6QI</div>
+    </div>
+    <div class="cta-card p">
+      <h3>🏗 Protocol</h3>
+      <div class="desc">Строю — расту долю</div>
+      <a href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI">Зайти →</a>
+      <div class="url">code=ML2DYYBOQQCTC6QI</div>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:24px;">
+    <h3 style="margin-top:0;">Остались вопросы?</h3>
+    <p style="margin:0;">Зайди в Discord — там команда Quanta, разборы обеих моделей и люди, которые уже выбрали свою.<br><a class="link" href="https://discord.gg/nyUmR9rpT">discord.gg/nyUmR9rpT</a></p>
+  </div>
+</section>
+
+<footer>Quanta Tech · AI-экосистема для создателей · Выплаты в USDC каждую полночь UTC · Результат зависит от активности и аудитории</footer>
+
+</body>
+</html>

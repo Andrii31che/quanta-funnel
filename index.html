@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quanta Tech — 21 AI-инструмент за €150. Выплаты в USDC каждую ночь.</title>
+<meta name="description" content="Замени $500/мес разрозненных AI-подписок на одну экосистему. 21+ инструмент, реферальная программа, выплаты в USDC каждую полночь UTC без холда. Две модели участия — рекомендуй или строй." />
+<meta property="og:title" content="Quanta Tech — AI, который возвращает деньги" />
+<meta property="og:description" content="21 инструмент под одной крышей за €150. Получай долю в USDC, пока спишь." />
+<meta property="og:type" content="website" />
+<style>
+  :root {
+    --bg: #07070C;
+    --surface: #0F0F18;
+    --surface-2: #15151F;
+    --fg: #F4F4F7;
+    --muted: #9A9AA8;
+    --purple: #7C5BFF;
+    --teal: #00E5C7;
+    --border: #20202E;
+    --border-strong: #2C2C3E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 22px; }
+  .accent { color: var(--teal); }
+  .pp { color: var(--purple); }
+
+  /* gradient blobs */
+  .blob {
+    position: fixed; border-radius: 50%; filter: blur(110px);
+    opacity: 0.28; z-index: 0; pointer-events: none;
+  }
+  .blob-1 { width: 420px; height: 420px; background: var(--purple); top: -120px; left: -120px; }
+  .blob-2 { width: 380px; height: 380px; background: var(--teal); top: 30vh; right: -160px; opacity: 0.18; }
+  main { position: relative; z-index: 1; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(7,7,12,0.78); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; max-width: 780px; margin: 0 auto; }
+  .logo { font-weight: 700; letter-spacing: -0.02em; font-size: 18px; }
+  .logo span { color: var(--purple); }
+  .nav-cta {
+    background: var(--teal); color: #04110E; font-weight: 600;
+    padding: 9px 18px; border-radius: 999px; font-size: 14px;
+    transition: transform .15s ease;
+  }
+  .nav-cta:hover { transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { padding: 72px 0 64px; text-align: left; }
+  .badge {
+    display: inline-block; font-size: 12px; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--teal);
+    border: 1px solid var(--border-strong); padding: 6px 14px;
+    border-radius: 999px; margin-bottom: 28px;
+  }
+  h1 {
+    font-size: clamp(33px, 6vw, 58px); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 22px;
+  }
+  h1 .strike { color: var(--muted); text-decoration: line-through; text-decoration-color: #FF5B6E; }
+  .lead { font-size: 18px; color: var(--muted); max-width: 600px; margin-bottom: 34px; }
+  .lead b { color: var(--fg); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .cta {
+    display: inline-block; background: var(--teal); color: #04110E;
+    font-weight: 700; padding: 16px 30px; border-radius: 12px; font-size: 16px;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 0 0 rgba(0,229,199,0);
+  }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,229,199,0.25); }
+  .cta-ghost {
+    display: inline-block; border: 1px solid var(--border-strong);
+    color: var(--fg); font-weight: 600; padding: 16px 26px; border-radius: 12px; font-size: 16px;
+    transition: border-color .15s ease;
+  }
+  .cta-ghost:hover { border-color: var(--purple); }
+
+  /* enemy bar */
+  .enemy { padding: 26px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .enemy p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+  .enemy-logos { display: flex; flex-wrap: wrap; gap: 10px; }
+  .enemy-logos span {
+    font-size: 13px; color: var(--muted); border: 1px solid var(--border);
+    padding: 5px 12px; border-radius: 8px; opacity: 0.7;
+  }
+
+  /* sections */
+  section { padding: 64px 0; }
+  .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--purple); margin-bottom: 14px; font-weight: 700; }
+  h2 { font-size: clamp(26px, 4.5vw, 38px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 18px; }
+  .section-lead { color: var(--muted); font-size: 17px; max-width: 560px; margin-bottom: 36px; }
+
+  /* problem cards */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 26px; }
+  .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .card .emoji { font-size: 24px; margin-bottom: 12px; display: block; }
+
+  /* reframe block */
+  .reframe { background: linear-gradient(135deg, rgba(124,91,255,0.12), rgba(0,229,199,0.08)); border: 1px solid var(--border-strong); border-radius: 24px; padding: 48px 32px; text-align: center; }
+  .reframe p { font-size: clamp(22px, 4vw, 32px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; }
+  .reframe .small { font-size: 17px; color: var(--muted); font-weight: 400; margin-top: 18px; }
+
+  /* tools grid */
+  .tools { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 600px) { .tools { grid-template-columns: 1fr 1fr; } }
+  .tool { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+  .tool b { display: block; margin-bottom: 4px; }
+  .tool span { color: var(--muted); font-size: 14px; }
+  .tools-note { color: var(--muted); font-size: 14px; margin-top: 18px; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .steps { grid-template-columns: repeat(3,1fr); } }
+  .step { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .step .num { font-size: 13px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+  .step h3 { font-size: 18px; margin-bottom: 8px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* MODELS — главная развилка */
+  .models { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  @media (min-width: 720px) { .models { grid-template-columns: 1fr 1fr; } }
+  .model { border-radius: 20px; padding: 32px 28px; border: 1px solid var(--border-strong); background: var(--surface); display: flex; flex-direction: column; }
+  .model.blogger { background: linear-gradient(160deg, rgba(0,229,199,0.10), rgba(15,15,24,0.4)); }
+  .model.protocol { background: linear-gradient(160deg, rgba(124,91,255,0.12), rgba(15,15,24,0.4)); }
+  .model .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 12px; }
+  .model.blogger .tag { color: var(--teal); }
+  .model.protocol .tag { color: var(--purple); }
+  .model h3 { font-size: 23px; font-weight: 800; margin-bottom: 6px; }
+  .model .who { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+  .model ul { list-style: none; margin-bottom: 24px; flex: 1; }
+  .model li { padding: 7px 0 7px 24px; position: relative; font-size: 15px; color: var(--fg); }
+  .model li:before { content: "→"; position: absolute; left: 0; }
+  .model.blogger li:before { color: var(--teal); }
+  .model.protocol li:before { color: var(--purple); }
+  .model .mcta { display: block; text-align: center; font-weight: 700; padding: 14px; border-radius: 12px; transition: transform .15s ease; }
+  .model.blogger .mcta { background: var(--teal); color: #04110E; }
+  .model.protocol .mcta { background: var(--purple); color: #fff; }
+  .model .mcta:hover { transform: translateY(-2px); }
+
+  /* pricing */
+  .prices { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .prices { grid-template-columns: repeat(3,1fr); } }
+  .price { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 18px; padding: 28px 24px; position: relative; }
+  .price.pop { border-color: var(--teal); }
+  .price .pop-badge { position: absolute; top: -12px; left: 24px; background: var(--teal); color: #04110E; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .price .plabel { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .price .amount { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; }
+  .price .period { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+  .price p { font-size: 14px; color: var(--muted); }
+  .price .save { color: var(--teal); font-size: 13px; font-weight: 600; margin-top: 8px; }
+  .price-note { text-align: center; color: var(--muted); font-size: 14px; margin-top: 22px; }
+
+  /* cases */
+  .case { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 14px; }
+  .case .quote { font-size: 16px; margin-bottom: 12px; }
+  .case .quote b { color: var(--teal); }
+  .case .who { color: var(--muted); font-size: 14px; }
+  .disclaimer { color: var(--muted); font-size: 12px; margin-top: 14px; font-style: italic; }
+
+  /* discord */
+  .discord { background: linear-gradient(135deg, rgba(124,91,255,0.16), rgba(15,15,24,0.5)); border: 1px solid var(--border-strong); border-radius: 20px; padding: 40px 32px; text-align: center; }
+  .discord h2 { margin-bottom: 12px; }
+  .discord p { color: var(--muted); margin-bottom: 26px; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+  /* pdf capture */
+  .pdf-capture { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 20px; padding: 40px 32px; }
+  .pdf-capture h2 { margin-bottom: 12px; }
+  .pdf-capture p { color: var(--muted); margin-bottom: 24px; }
+  .pdf-form { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pdf-form input { flex: 1; min-width: 220px; background: var(--bg); border: 1px solid var(--border-strong); color: var(--fg); padding: 15px 18px; border-radius: 12px; font-size: 15px; }
+  .pdf-form input:focus { outline: none; border-color: var(--teal); }
+  .pdf-form button { background: var(--teal); color: #04110E; font-weight: 700; padding: 15px 26px; border: none; border-radius: 12px; font-size: 15px; cursor: pointer; }
+
+  /* faq */
+  .faq details { border-bottom: 1px solid var(--border); padding: 18px 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:after { content: "+"; color: var(--teal); font-size: 22px; }
+  .faq details[open] summary:after { content: "−"; }
+  .faq p { color: var(--muted); font-size: 15px; margin-top: 12px; }
+
+  /* final */
+  .final { text-align: center; padding: 80px 0; }
+  .final h2 { font-size: clamp(28px, 5vw, 44px); margin-bottom: 20px; }
+  .final p { color: var(--muted); margin-bottom: 30px; }
+
+  footer { border-top: 1px solid var(--border); padding: 36px 0; color: var(--muted); font-size: 14px; text-align: center; }
+  footer a { color: var(--teal); }
+  footer .row { margin-bottom: 8px; }
+
+  /* sticky mobile cta */
+  .sticky-cta { display: none; }
+  @media (max-width: 640px) {
+    .sticky-cta { display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; padding: 12px 16px; background: rgba(7,7,12,0.92); backdrop-filter: blur(12px); border-top: 1px solid var(--border); }
+    .sticky-cta a { display: block; text-align: center; background: var(--teal); color: #04110E; font-weight: 700; padding: 15px; border-radius: 12px; }
+    body { padding-bottom: 80px; }
+  }
+</style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Quanta<span>.</span>Tech</div>
+    <a class="nav-cta" href="#models">Зайти →</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <span class="badge">AI-экосистема · выплаты в USDC</span>
+    <h1><span class="pp">Quanta</span> работает на тебя.<br>Даже пока ты <span class="accent">спишь</span>.</h1>
+    <p class="lead">
+      21 AI-инструмент под одной крышей за €150 в месяц. <b>Пользуйся сам, рекомендуй другим —
+      и получай выплаты в USDC каждую ночь</b>, прямо на свой кошелёк.
+    </p>
+    <div class="cta-row">
+      <a class="cta" href="#models">Зайти в Quanta →</a>
+      <a class="cta-ghost" href="#pdf">Сначала PDF (бесплатно)</a>
+    </div>
+  </header>
+
+  <!-- ENEMY BAR -->
+  <div class="enemy">
+    <div class="wrap">
+      <p>То, за что ты больше не платишь по отдельности:</p>
+      <div class="enemy-logos">
+        <span>OpenAI $20</span><span>Claude Max $200</span><span>Midjourney $30</span>
+        <span>ElevenLabs $22</span><span>Runway $35</span><span>Cursor $20</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="wrap">
+    <div class="kicker">Знакомо?</div>
+    <h2>Ты не покупаешь AI. Ты кормишь пробитое ведро.</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="emoji">🩸</span>
+        <h3>Подписочный ад</h3>
+        <p>Утром Midjourney. Днём ElevenLabs. Вечером Claude Max. К концу месяца $487 списано — и ни цента обратно. Это не инвестиция. Это аренда воздуха.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🚫</span>
+        <h3>Бан без объяснений</h3>
+        <p>Открываешь утром OpenAI — «account suspended». Без писем. Без возврата. Полгода истории, кастомные GPT, оплаченный тариф — в труху. Потому что залогинился из Испании, а вчера был в Украине.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🎪</span>
+        <h3>Марафоны за $497</h3>
+        <p>«Запусти AI-агентство за 7 дней!» Заплатил $497. Получил Notion-табличку и 4 часа Zoom про промпт-инжиниринг. Денег как не было — так и нет. Только теперь ещё и стыдно.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFRAME -->
+  <section class="wrap">
+    <div class="reframe">
+      <p>AI — это не подписка, которую ты палишь.<br>AI — это инструмент, который <span class="accent">возвращает деньги</span>.</p>
+      <p class="small">Каждую ночь. На кошелёк. Без холда. Пока ты спишь.</p>
+    </div>
+  </section>
+
+  <!-- WHAT'S INSIDE -->
+  <section class="wrap">
+    <div class="kicker">Что внутри</div>
+    <h2>21+ инструмент. Один логин. Без банов.</h2>
+    <p class="section-lead">Это не папка с ссылками на чужие сервисы. Это одна экосистема, где инструменты знают контекст друг друга и работают в цепочке.</p>
+    <div class="tools">
+      <div class="tool"><b>BrandMind</b><span>AI-память про твой бренд: один раз изучает продукт и аудиторию — дальше весь контент в твоём голосе.</span></div>
+      <div class="tool"><b>AI PromoStudio</b><span>Целый отдел маркетинга: стратегия, скрипты, посты, карусели, follow-up.</span></div>
+      <div class="tool"><b>AI News</b><span>Лента свежих AI-новостей в твоей нише — без листания десятка каналов.</span></div>
+      <div class="tool"><b>Academy / BaseCamp</b><span>Пошаговое обучение от нуля до первой выплаты. Бесплатно навсегда.</span></div>
+      <div class="tool"><b>Q-Lab</b><span>AI-чат с доступом к экспериментальным моделям до релиза.</span></div>
+      <div class="tool"><b>TG Bot</b><span>Личный AI-ассистент экосистемы прямо в твоём Telegram.</span></div>
+    </div>
+    <p class="tools-note">И ещё 15 инструментов внутри подписки. <span class="pp">Vioxen</span> (AI-видео) пока в beta — честно шлифуем, не продаём как готовый. Видео в проде советуем гонять через Kling/Runway.</p>
+  </section>
+
+  <!-- MODELS — главная развилка -->
+  <section class="wrap" id="models">
+    <div class="kicker">Две двери</div>
+    <h2>Дальше выбираешь, как именно зарабатывать.</h2>
+    <p class="section-lead">Одни хотят кэш сейчас. Другие — строить актив вдолгую. Quanta даёт обе модели с первого дня. Не знаешь свою — начни с Blogger, в Protocol перейдёшь когда захочешь.</p>
+    <div class="models">
+
+      <div class="model blogger">
+        <div class="tag">🎯 Blogger · деньги сейчас</div>
+        <h3>Рекомендуй — бери процент</h3>
+        <p class="who">Для блогеров, фрилансеров, контент-мейкеров. Для всех, кто просто рекомендует то, чем пользуется сам.</p>
+        <ul>
+          <li><b>50%</b> с каждой покупки по твоей ссылке</li>
+          <li>€75 с €150 · €202 с €405 · €720 с €1440</li>
+          <li>USDC каждую полночь UTC, без холда</li>
+          <li>Просто: кинул ссылку — получил процент</li>
+        </ul>
+        <a class="mcta" href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI" target="_blank" rel="noopener">Зайти по Blogger-модели →</a>
+      </div>
+
+      <div class="model protocol">
+        <div class="tag">🏗 Protocol · доля вдолгую</div>
+        <h3>Строй систему — расти долю</h3>
+        <p class="who">Для предпринимателей, строителей команд и сообществ. Для тех, кто играет вдолгую, а не ловит разовую комиссию.</p>
+        <ul>
+          <li>Не процент — доля в экономике экосистемы</li>
+          <li>Растёт от активности, стабильности и глубины сети</li>
+          <li>Ранние участники — в верхних тирах (×4 к токену)</li>
+          <li>Топ по вкладу заходят в World Pool</li>
+        </ul>
+        <a class="mcta" href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI" target="_blank" rel="noopener">Зайти по Protocol-модели →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW PAYOUT -->
+  <section class="wrap">
+    <div class="kicker">Как приходят деньги</div>
+    <h2>Три шага. Потом — каждую ночь.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">ШАГ 1</div>
+        <h3>Заходишь</h3>
+        <p>Платишь €150 за 30 дней. Получаешь Quanta ID, 21+ инструмент и личную реферальную ссылку.</p>
+      </div>
+      <div class="step">
+        <div class="num">ШАГ 2</div>
+        <h3>Делишься</h3>
+        <p>Кидаешь ссылку в сторис, в канал, другу. Кто-то заходит по ней — система фиксирует это за тобой навсегда.</p>
+      </div>
+      <div class="step">
+        <div class="num">ШАГ 3</div>
+        <h3>Получаешь</h3>
+        <p>Каждую полночь UTC — автоматическая выплата в USDC на твой кошелёк. Без заявок. Без «подождите 30 дней».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="wrap">
+    <div class="kicker">Цена</div>
+    <h2>Одна подписка вместо пяти.</h2>
+    <div class="prices">
+      <div class="price">
+        <div class="plabel">Старт</div>
+        <div class="amount">€150</div>
+        <div class="period">30 дней</div>
+        <p>21+ инструмент. Реферальная программа. Выплаты в USDC каждую ночь.</p>
+      </div>
+      <div class="price pop">
+        <div class="pop-badge">Популярный</div>
+        <div class="plabel">Полгода</div>
+        <div class="amount">€405</div>
+        <div class="period">90 дней</div>
+        <p>Всё из «Старт» + приоритетная поддержка + ранний доступ к новым инструментам.</p>
+        <div class="save">Экономишь €45</div>
+      </div>
+      <div class="price">
+        <div class="plabel">Год</div>
+        <div class="amount">€1440</div>
+        <div class="period">365 дней</div>
+        <p>Всё выше + закрытое комьюнити в Discord + 1-на-1 онбординг.</p>
+        <div class="save">Экономишь €360</div>
+      </div>
+    </div>
+    <p class="price-note">Оплата в USDC под капотом. Цены в евро — для понятности. Free trial мы убрали: работаем с теми, кто пришёл всерьёз.</p>
+  </section>
+
+  <!-- CASES -->
+  <section class="wrap">
+    <div class="kicker">Кейсы</div>
+    <h2>Как это выглядит у активных партнёров.</h2>
+    <div class="case">
+      <p class="quote">«Три месяца назад платила $340 за подписки и думала, что это норма. Сейчас реферальная программа приносит <b>€2 400 в месяц</b>. Подписку Quanta теперь оплачивает один реферал в день.»</p>
+      <p class="who">— Елена К., Киев → Варшава</p>
+    </div>
+    <div class="case">
+      <p class="quote">«За полгода — <b>€11 800 в USDC</b>. Ни цента в рекламу. Делал то, что и так делал: писал в TG про AI. Только теперь под каждым постом — моя ссылка.»</p>
+      <p class="who">— Дмитрий С., Львов</p>
+    </div>
+    <div class="case">
+      <p class="quote">«В декрете, ребёнок на руках. Не верила в "AI-доходы". Зашла из-за €150 — типа максимум потеряю. За 2 месяца — <b>€3 600</b>. Это уже основной доход.»</p>
+      <p class="who">— Мария Л., Мадрид</p>
+    </div>
+    <p class="disclaimer">Имена и фото иллюстративные, суммы — в пределах реалистичного диапазона для активного партнёра. Результат зависит от твоей активности и аудитории.</p>
+  </section>
+
+  <!-- DISCORD -->
+  <section class="wrap">
+    <div class="discord">
+      <div class="kicker">Комьюнити</div>
+      <h2>Один в поле не растёт.</h2>
+      <p>Внутри Discord — команда Quanta, разборы, ответы на вопросы и люди, которые уже зарабатывают. Зайди до покупки, посмотри как всё устроено.</p>
+      <a class="cta" href="https://discord.gg/nyUmR9rpT" target="_blank" rel="noopener">Зайти в Discord →</a>
+    </div>
+  </section>
+
+  <!-- PDF CAPTURE -->
+  <section class="wrap" id="pdf">
+    <div class="pdf-capture">
+      <div class="kicker">Не готов платить? Окей.</div>
+      <h2>Забери PDF-разбор бесплатно.</h2>
+      <p>Внутри: карта из 21 инструмента Quanta, как работают обе модели заработка и пошаговый скрипт первой выплаты. Один PDF, один follow-up — и всё. Без спама.</p>
+      <!-- Лиды приходят на твой email через Formspree (бесплатно, без бэкенда).
+           1. Зайди на formspree.io, создай форму на свой email (ac@quanta-tech.org)
+           2. Скопируй её ID и вставь вместо YOUR_FORM_ID ниже -->
+      <form class="pdf-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="твой email" required />
+        <input type="hidden" name="_subject" value="Новый лид с Quanta-лендинга (PDF)" />
+        <input type="hidden" name="source" value="quanta-funnel-landing" />
+        <button type="submit">Забрать PDF</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap">
+    <div class="kicker">Вопросы</div>
+    <h2>Коротко о главном.</h2>
+    <div class="faq">
+      <details>
+        <summary>А если меня забанит OpenAI или Anthropic?</summary>
+        <p>Не забанит. Quanta — это инфраструктура поверх десятка моделей. Никакого «залогинься через свой OpenAI»: наш API, наши серверы, наши лимиты.</p>
+      </details>
+      <details>
+        <summary>Чем Blogger отличается от Protocol?</summary>
+        <p>Blogger — фиксированные 50% с каждой прямой продажи по твоей ссылке. Просто и сразу. Protocol — это не процент, а доля в экономике экосистемы, которая растёт от твоей активности и глубины сети. Сложнее, но потолок выше. Не знаешь с чего начать — бери Blogger.</p>
+      </details>
+      <details>
+        <summary>Когда приходят выплаты?</summary>
+        <p>Каждую полночь UTC, автоматически, на твой USDC-кошелёк. Без заявок и холдов. Заработал сегодня — получишь в 00:00 UTC.</p>
+      </details>
+      <details>
+        <summary>Я не сетевик и не умею продавать. Мне подойдёт?</summary>
+        <p>Да. Внутри есть готовые промо-материалы и шаблоны постов. Программа рассчитана и на блогеров, и на фрилансеров, и на тех, кто просто делится ссылкой в своём кругу.</p>
+      </details>
+      <details>
+        <summary>Я из Украины / Беларуси / РФ — будет работать?</summary>
+        <p>Да. Платформа гео-нейтральная. USDC выплачивается на любой кошелёк — Phantom, Trust, MetaMask.</p>
+      </details>
+      <details>
+        <summary>Можно отменить подписку?</summary>
+        <p>Да, в любой момент. Активный тариф доработает до конца оплаченного периода.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="wrap final">
+    <h2>Перестань платить за подписки.<br>Начни <span class="accent">зарабатывать</span> на AI.</h2>
+    <p>€150 / 30 дней. Отмена в один клик. Выплаты в USDC с первого реферала.</p>
+    <a class="cta" href="#models">Выбрать модель и зайти →</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">Quanta Tech · AI-экосистема для создателей</div>
+    <div class="row">
+      <a href="https://discord.gg/nyUmR9rpT" target="_blank" rel="noopener">Discord</a> ·
+      <a href="https://t.me/quantatech_bot" target="_blank" rel="noopener">Поддержка в TG</a>
+    </div>
+    <div class="row" style="font-size:12px;opacity:0.6;margin-top:10px;">Оплата в USDC. Результат зависит от активности и аудитории партнёра.</div>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a href="#models">Зайти в Quanta за €150 →</a></div>
+
+</body>
+</html>

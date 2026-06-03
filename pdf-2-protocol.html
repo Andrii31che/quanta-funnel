@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quanta Tech — Protocol-модель: как построить долю в экономике, а не ловить комиссию</title>
+<style>
+  :root { --purple:#7C5BFF; --teal:#00B89E; --ink:#15151F; --muted:#5A5A6B; --line:#E4E4EC; --bg:#FFFFFF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  .page { max-width:760px; margin:0 auto; padding:56px 48px; }
+  .cover { min-height:92vh; display:flex; flex-direction:column; justify-content:center; }
+  .kicker { font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--purple); font-weight:700; margin-bottom:18px; }
+  h1 { font-size:42px; line-height:1.1; letter-spacing:-0.03em; font-weight:800; margin-bottom:22px; }
+  h2 { font-size:27px; letter-spacing:-0.02em; font-weight:800; margin:8px 0 16px; }
+  h3 { font-size:19px; font-weight:700; margin:22px 0 8px; }
+  p { color:var(--ink); margin-bottom:14px; font-size:16px; }
+  .muted { color:var(--muted); }
+  .lead { font-size:19px; color:var(--muted); max-width:560px; }
+  .pp { color:var(--purple); } .teal { color:var(--teal); }
+  .pill { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted); margin-bottom:24px; }
+  .box { background:#F7F7FB; border:1px solid var(--line); border-radius:16px; padding:26px; margin:20px 0; }
+  .box.accent { background:linear-gradient(160deg,rgba(124,91,255,0.10),rgba(247,247,251,0.6)); border-color:rgba(124,91,255,0.3); }
+  .reframe { font-size:25px; font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin:18px 0; }
+  ul { list-style:none; margin:14px 0; }
+  li { padding:8px 0 8px 26px; position:relative; font-size:16px; }
+  li:before { content:"→"; position:absolute; left:0; color:var(--purple); font-weight:700; }
+  table { width:100%; border-collapse:collapse; margin:18px 0; font-size:15px; }
+  th,td { text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.04em; }
+  td .x4 { color:var(--purple); font-weight:800; }
+  .dims { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0; }
+  .dims div { background:#F7F7FB; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .dims b { display:block; margin-bottom:4px; }
+  .dims span { font-size:14px; color:var(--muted); }
+  .cta-box { background:var(--purple); color:#fff; border-radius:18px; padding:34px; text-align:center; margin-top:28px; }
+  .cta-box h2 { color:#fff; }
+  .cta-box a { display:inline-block; background:#fff; color:var(--purple); font-weight:700; padding:15px 30px; border-radius:12px; margin-top:14px; text-decoration:none; }
+  .cta-box .sub { color:#E5DEFF; font-size:14px; margin-top:14px; }
+  .link { color:var(--purple); word-break:break-all; font-size:14px; }
+  footer { border-top:1px solid var(--line); padding:24px 0; text-align:center; color:var(--muted); font-size:13px; }
+  @media print {
+    .page { padding:40px; }
+    .cover { min-height:auto; padding-top:80px; padding-bottom:80px; }
+    .pagebreak { page-break-before:always; }
+    a { color:var(--ink); }
+    @page { margin:1.2cm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="pill">Quanta Tech · разбор Protocol-модели</div>
+  <div class="kicker">Бесплатный разбор</div>
+  <h1>Процент с продажи<br>заканчивается.<br><span class="pp">Доля в экономике</span> — нет.</h1>
+  <p class="lead">Эта модель не про «кинул ссылку — получил кэш». Она про то, как построить актив, который растёт сам, пока экосистема становится больше. Для тех, кто думает на годы, а не на один платёж.</p>
+</section>
+
+<!-- ENEMY -->
+<section class="page pagebreak">
+  <div class="kicker">Почему не просто процент</div>
+  <h2>У комиссии есть потолок. У доли — нет.</h2>
+  <p>Реферальный процент — отличная штука. Но это всегда линейная история: один продал — один раз получил. Перестал постить — поток высох. Ты не владеешь системой, ты её обслуживаешь.</p>
+  <div class="reframe">Фикс-процент платит за <span class="pp">действие</span>.<br>Protocol платит за <span class="pp">вклад</span>.</div>
+  <p>Разница как между подработкой и долей в компании. В первой ты меняешь время на деньги. Во второй — то, что ты построил, продолжает приносить, даже когда ты не в моменте.</p>
+</section>
+
+<!-- USE ECONOMY -->
+<section class="page pagebreak">
+  <div class="kicker">Как устроена Quanta</div>
+  <h2>Экономика, где ценность распределяет алгоритм, а не начальник.</h2>
+  <p>В основе Quanta — принцип <b>Proof-of-Use</b>: ценность рождается из реального использования экосистемы. Не из вычислений как у Bitcoin, не из капитала как у инвест-фондов. Из того, что люди реально делают внутри.</p>
+  <p>Каждую транзакцию протокол распределяет по формуле:</p>
+  <div class="box accent">
+    <ul style="margin:0;">
+      <li><b>50%</b> — создателю продукта</li>
+      <li><b>45%</b> — участникам через общий пул (Global Bonus Pool)</li>
+      <li><b>5%</b> — в World Pool для тех, кто вложил больше всех</li>
+    </ul>
+  </div>
+  <p class="muted">Protocol-модель — это твой способ забирать долю из этих 45% и 5%. Не фиксированную. Растущую.</p>
+</section>
+
+<!-- PROTOCOL MECHANICS -->
+<section class="page pagebreak">
+  <div class="kicker">Protocol-модель</div>
+  <h2>Performance Points: как считается твоя доля.</h2>
+  <p>Протокол смотрит не на один факт продажи, а на многомерную картину твоей активности. Чем она сильнее по всем осям — тем больше Performance Points, тем больше твоя доля пула.</p>
+  <div class="dims">
+    <div><b>Частота</b><span>как регулярно ты в системе</span></div>
+    <div><b>Стабильность</b><span>не вспышка, а ровный поток</span></div>
+    <div><b>Вклад</b><span>что ты приносишь экосистеме</span></div>
+    <div><b>Влияние</b><span>глубина и качество твоей сети</span></div>
+  </div>
+  <p>Каждую полночь UTC пул распределяется между участниками пропорционально их Performance Points. Модель самообучающаяся — со временем она учитывает всё больше измерений твоей работы.</p>
+  <div class="reframe pp">Ты не продаёшь.<br>Ты наращиваешь долю.</div>
+</section>
+
+<!-- TIERS + TOKEN -->
+<section class="page pagebreak">
+  <div class="kicker">Почему важно зайти рано</div>
+  <h2>Ранний вход — это математическое преимущество.</h2>
+  <p>После 10 000 участников Quanta запускает собственный токен (лимитированная эмиссия, как у Bitcoin). 10% эмиссии распределяется среди первых 10 000 — но не поровну. Чем раньше зашёл, тем выше твой тир.</p>
+  <table>
+    <tr><th>Тир</th><th>Регистрация</th><th>Множитель</th></tr>
+    <tr><td>Тир 1</td><td>№1–1 000</td><td class="x4">×4</td></tr>
+    <tr><td>Тир 2</td><td>№1 001–3 000</td><td>×2</td></tr>
+    <tr><td>Тир 3</td><td>№3 001–6 000</td><td>×1.33</td></tr>
+    <tr><td>Тир 4</td><td>№6 001–10 000</td><td>базовый</td></tr>
+  </table>
+  <p>Один и тот же объём работы в Тире 1 приносит <b class="pp">в 4 раза больше</b>, чем в Тире 4. Это окно, которое закрывается с каждым новым участником. Никаких pre-sale и закрытых раундов — только порядок входа.</p>
+  <div class="box">
+    <p style="margin:0;"><b>Что это значит для тебя.</b> Каждый день, что ты думаешь, твой потенциальный тир становится ниже. Protocol-строители заходят рано именно поэтому: они занимают позицию до того, как она подорожает.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="page pagebreak">
+  <div class="kicker">Твой ход</div>
+  <h2>Это модель для тех, кто строит. Не для тех, кто пробует.</h2>
+  <p>Если ты ведёшь команду, комьюнити или просто мыслишь как предприниматель — Protocol даёт тебе долю в растущей экономике, а не разовую выплату. Чем раньше зайдёшь и чем системнее работаешь, тем больше доля.</p>
+
+  <div class="cta-box">
+    <h2>Зайти по Protocol-модели</h2>
+    <p style="color:#E5DEFF;margin:0;">Доля в экономике · ранний тир · World Pool · токен после 10 000</p>
+    <a href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI">Зарегистрироваться в Quanta →</a>
+    <div class="sub">ссылка: quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI</div>
+  </div>
+
+  <div class="box" style="margin-top:24px;">
+    <h3 style="margin-top:0;">Хочешь обсудить стратегию входа?</h3>
+    <p style="margin:0;">В Discord — команда Quanta и строители, которые уже занимают позиции в верхних тирах.<br><a class="link" href="https://discord.gg/nyUmR9rpT">discord.gg/nyUmR9rpT</a></p>
+  </div>
+</section>
+
+<footer>Quanta Tech · AI-экосистема для создателей · Токен запускается после 10 000 участников · Без pre-sale и закрытых раундов</footer>
+
+</body>
+</html>

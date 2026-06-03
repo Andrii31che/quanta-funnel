@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quanta Tech — Blogger-модель: как ссылка превращается в зарплату</title>
+<style>
+  :root { --purple:#7C5BFF; --teal:#00B89E; --ink:#15151F; --muted:#5A5A6B; --line:#E4E4EC; --bg:#FFFFFF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  .page { max-width:760px; margin:0 auto; padding:56px 48px; }
+  .cover { min-height:92vh; display:flex; flex-direction:column; justify-content:center; }
+  .kicker { font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:18px; }
+  h1 { font-size:42px; line-height:1.1; letter-spacing:-0.03em; font-weight:800; margin-bottom:22px; }
+  h1 .strike { color:var(--muted); text-decoration:line-through; }
+  h2 { font-size:27px; letter-spacing:-0.02em; font-weight:800; margin:8px 0 16px; }
+  h3 { font-size:19px; font-weight:700; margin:22px 0 8px; }
+  p { color:var(--ink); margin-bottom:14px; font-size:16px; }
+  .muted { color:var(--muted); }
+  .lead { font-size:19px; color:var(--muted); max-width:560px; }
+  .teal { color:var(--teal); } .pp { color:var(--purple); }
+  .pill { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted); margin-bottom:24px; }
+  .box { background:#F7F7FB; border:1px solid var(--line); border-radius:16px; padding:26px; margin:20px 0; }
+  .box.accent { background:linear-gradient(160deg,rgba(0,184,158,0.10),rgba(247,247,251,0.6)); border-color:rgba(0,184,158,0.3); }
+  .reframe { font-size:25px; font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin:18px 0; }
+  ul { list-style:none; margin:14px 0; }
+  li { padding:8px 0 8px 26px; position:relative; font-size:16px; }
+  li:before { content:"→"; position:absolute; left:0; color:var(--teal); font-weight:700; }
+  .math { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:18px 0; }
+  .math div { background:#F7F7FB; border:1px solid var(--line); border-radius:12px; padding:18px; text-align:center; }
+  .math .big { font-size:26px; font-weight:800; color:var(--teal); }
+  .math .lbl { font-size:13px; color:var(--muted); }
+  .step { border-left:3px solid var(--teal); padding:4px 0 4px 18px; margin:16px 0; }
+  .step b { font-size:17px; }
+  .cta-box { background:var(--ink); color:#fff; border-radius:18px; padding:34px; text-align:center; margin-top:28px; }
+  .cta-box h2 { color:#fff; }
+  .cta-box a { display:inline-block; background:var(--teal); color:#04110E; font-weight:700; padding:15px 30px; border-radius:12px; margin-top:14px; text-decoration:none; }
+  .cta-box .sub { color:#B9B9C8; font-size:14px; margin-top:14px; }
+  .link { color:var(--teal); word-break:break-all; font-size:14px; }
+  footer { border-top:1px solid var(--line); padding:24px 0; text-align:center; color:var(--muted); font-size:13px; }
+  @media print {
+    .page { padding:40px; }
+    .cover { min-height:auto; padding-top:80px; padding-bottom:80px; }
+    .pagebreak { page-break-before:always; }
+    a { color:var(--ink); }
+    @page { margin:1.2cm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="pill">Quanta Tech · разбор Blogger-модели</div>
+  <div class="kicker">Бесплатный разбор</div>
+  <h1>Как одна ссылка<br>превращается в <span class="teal">зарплату</span>,<br>пока ты спишь.</h1>
+  <p class="lead">Ты и так весь день что-то рекомендуешь — фильмы, кафе, приложения. Бесплатно. Этот PDF про то, как начать получать за это 50% в USDC. Каждую ночь.</p>
+</section>
+
+<!-- ENEMY -->
+<section class="page pagebreak">
+  <div class="kicker">С чего всё начинается</div>
+  <h2>Сначала про деньги, которые ты теряешь.</h2>
+  <p>Посчитай свои подписки за месяц. Claude, может ChatGPT Plus, может Midjourney или ElevenLabs. У большинства, кто работает с AI, выходит <b>$300–500 в месяц</b>. Это твои деньги, которые уходят в одну сторону и не возвращаются никогда.</p>
+  <div class="reframe">AI-подписка — это не инвестиция.<br>Это аренда воздуха.</div>
+  <p>И есть второй слой боли. Ты не владеешь ничем. Аккаунт могут забанить за «вход из другой страны» — без писем, без возврата. Полгода работы исчезают за секунду.</p>
+  <div class="box">
+    <p class="muted" style="margin:0;">Anthropic за месяц забанил около 2 млн аккаунтов. У OpenAI — массовые блокировки по гео. Ты строишь на чужой земле, с которой тебя могут согнать в любой день.</p>
+  </div>
+</section>
+
+<!-- WHAT IS QUANTA -->
+<section class="page pagebreak">
+  <div class="kicker">Решение</div>
+  <h2>Quanta Tech — 21 инструмент под одной крышей.</h2>
+  <p>Вместо пяти подписок по отдельности — одна экосистема за <b>€150 в месяц</b>. Контент-планер, AI-промостудия, новости индустрии, обучение, чат с моделями, Telegram-ассистент. Они знают контекст друг друга и работают в цепочке.</p>
+  <p>Но главное даже не это. Главное — что у Quanta встроена реферальная программа. Не «приведи друга, получи скидку». А <b class="teal">полноценная доля с каждой покупки по твоей ссылке</b>.</p>
+  <p class="muted">И вот тут начинается Blogger-модель.</p>
+</section>
+
+<!-- BLOGGER MODEL -->
+<section class="page pagebreak">
+  <div class="kicker">Blogger-модель</div>
+  <h2>Самый прямой способ. Рекомендуешь — берёшь процент.</h2>
+  <p>Никаких Performance Points, формул и пулов. Логика на уровне здравого смысла:</p>
+  <div class="box accent">
+    <div class="reframe" style="margin-top:0;">Кто купил по твоей ссылке —<br>тебе падает <span class="teal">50%</span>. В USDC.</div>
+  </div>
+  <h3>Математика без обмана</h3>
+  <div class="math">
+    <div><div class="big">€75</div><div class="lbl">с тарифа €150</div></div>
+    <div><div class="big">€202</div><div class="lbl">с тарифа €405</div></div>
+    <div><div class="big">€720</div><div class="lbl">с тарифа €1440</div></div>
+  </div>
+  <p>Это половина. Не 10% как у HeyGen, не 15% как у Synthesia. Половина — потому что в Quanta реферальная программа это часть продукта, а не подачка.</p>
+  <h3>Когда приходят деньги</h3>
+  <p>Каждую полночь UTC. Автоматически. На твой кошелёк в USDC. Без заявок, без «подождите 30 дней», без холда. Заработал сегодня — получил ночью.</p>
+  <div class="reframe teal">Я не работаю по ночам.<br>По ночам работает Quanta.</div>
+</section>
+
+<!-- FIRST PAYOUT SCRIPT -->
+<section class="page pagebreak">
+  <div class="kicker">Пошагово</div>
+  <h2>Как дойти до первой выплаты.</h2>
+  <div class="step"><b>1. Заходишь и берёшь ссылку.</b><br><span class="muted">Оплачиваешь €150, получаешь Quanta ID и личную реферальную ссылку. Это твой актив — связи фиксируются за тобой навсегда.</span></div>
+  <div class="step"><b>2. Кидаешь туда, где тебя уже слушают.</b><br><span class="muted">Сторис, TG-канал, чат друзей, описание под рилсом. Не нужна аудитория в 100к. Нужно 5 человек, которым реально надоели подписки.</span></div>
+  <div class="step"><b>3. Используешь готовые материалы.</b><br><span class="muted">Внутри — шаблоны постов, разборы, промо. Не надо придумывать с нуля. Бери и адаптируй под свой голос.</span></div>
+  <div class="step"><b>4. Получаешь первую выплату.</b><br><span class="muted">Первый человек зашёл по ссылке и купил — €75 прилетают в ближайшую полночь UTC. Дальше это просто повторяется.</span></div>
+  <div class="box">
+    <p style="margin:0;"><b>Реальный ориентир.</b> Чтобы выйти на €2000+ в месяц, достаточно микса: ~27 рефералов на €150, или 10 на €405, или 3 на €1440. Один активный месяц в твоём канале — и подписка окупает сама себя.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="page pagebreak">
+  <div class="kicker">Твой ход</div>
+  <h2>Самое дорогое — это месяцы, когда ты просто платил.</h2>
+  <p>Каждый месяц без реферальной ссылки — это деньги, которые ты отдал и не вернул. Blogger-модель не требует навыков продаж. Требует одного решения: начать рекомендовать то, чем и так пользуешься.</p>
+
+  <div class="cta-box">
+    <h2>Зайти по Blogger-модели</h2>
+    <p style="color:#B9B9C8;margin:0;">€150 / 30 дней · 50% с каждой покупки · USDC каждую ночь</p>
+    <a href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI">Зарегистрироваться в Quanta →</a>
+    <div class="sub">ссылка: quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI</div>
+  </div>
+
+  <div class="box" style="margin-top:24px;">
+    <h3 style="margin-top:0;">Сначала посмотреть, как всё устроено?</h3>
+    <p style="margin:0;">Зайди в Discord — там команда Quanta, разборы и люди, которые уже зарабатывают.<br><a class="link" href="https://discord.gg/nyUmR9rpT">discord.gg/nyUmR9rpT</a></p>
+  </div>
+</section>
+
+<footer>Quanta Tech · AI-экосистема для создателей · Результат зависит от активности и аудитории партнёра</footer>
+
+</body>
+</html>

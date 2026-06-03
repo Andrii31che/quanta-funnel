@@ -5,45 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Quanta Tech — Blogger-модель: как ссылка превращается в зарплату</title>
 <style>
-  :root { --purple:#7C5BFF; --teal:#00B89E; --ink:#15151F; --muted:#5A5A6B; --line:#E4E4EC; --bg:#FFFFFF; }
+  :root { --bg:#07070C; --surface:#11111B; --surface2:#181826; --fg:#F4F4F7; --muted:#9AA0AE; --line:#24243A; --line2:#2E2E44; --purple:#8B6BFF; --teal:#00E5C7; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
-  .page { max-width:760px; margin:0 auto; padding:56px 48px; }
+  body { font-family:-apple-system,"Inter","Segoe UI",Roboto,sans-serif; color:var(--fg); background:var(--bg); line-height:1.6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { max-width:760px; margin:0 auto; padding:56px 48px; position:relative; }
   .cover { min-height:92vh; display:flex; flex-direction:column; justify-content:center; }
   .kicker { font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:18px; }
   h1 { font-size:42px; line-height:1.1; letter-spacing:-0.03em; font-weight:800; margin-bottom:22px; }
   h1 .strike { color:var(--muted); text-decoration:line-through; }
   h2 { font-size:27px; letter-spacing:-0.02em; font-weight:800; margin:8px 0 16px; }
   h3 { font-size:19px; font-weight:700; margin:22px 0 8px; }
-  p { color:var(--ink); margin-bottom:14px; font-size:16px; }
+  p { color:var(--fg); margin-bottom:14px; font-size:16px; }
   .muted { color:var(--muted); }
   .lead { font-size:19px; color:var(--muted); max-width:560px; }
   .teal { color:var(--teal); } .pp { color:var(--purple); }
-  .pill { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted); margin-bottom:24px; }
-  .box { background:#F7F7FB; border:1px solid var(--line); border-radius:16px; padding:26px; margin:20px 0; }
-  .box.accent { background:linear-gradient(160deg,rgba(0,184,158,0.10),rgba(247,247,251,0.6)); border-color:rgba(0,184,158,0.3); }
+  .pill { display:inline-block; border:1px solid var(--line2); border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted); margin-bottom:24px; }
+  .box { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px; margin:20px 0; }
+  .box p { color:var(--muted); }
+  .box.accent { background:linear-gradient(160deg,rgba(0,229,199,0.12),rgba(17,17,27,0.6)); border-color:rgba(0,229,199,0.35); }
   .reframe { font-size:25px; font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin:18px 0; }
   ul { list-style:none; margin:14px 0; }
   li { padding:8px 0 8px 26px; position:relative; font-size:16px; }
   li:before { content:"→"; position:absolute; left:0; color:var(--teal); font-weight:700; }
   .math { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:18px 0; }
-  .math div { background:#F7F7FB; border:1px solid var(--line); border-radius:12px; padding:18px; text-align:center; }
+  .math div { background:var(--surface2); border:1px solid var(--line); border-radius:12px; padding:18px; text-align:center; }
   .math .big { font-size:26px; font-weight:800; color:var(--teal); }
   .math .lbl { font-size:13px; color:var(--muted); }
   .step { border-left:3px solid var(--teal); padding:4px 0 4px 18px; margin:16px 0; }
   .step b { font-size:17px; }
-  .cta-box { background:var(--ink); color:#fff; border-radius:18px; padding:34px; text-align:center; margin-top:28px; }
-  .cta-box h2 { color:#fff; }
+  .cta-box { background:linear-gradient(160deg,rgba(0,229,199,0.16),rgba(24,24,38,0.7)); border:1px solid rgba(0,229,199,0.4); border-radius:18px; padding:34px; text-align:center; margin-top:28px; }
   .cta-box a { display:inline-block; background:var(--teal); color:#04110E; font-weight:700; padding:15px 30px; border-radius:12px; margin-top:14px; text-decoration:none; }
-  .cta-box .sub { color:#B9B9C8; font-size:14px; margin-top:14px; }
+  .cta-box .sub { color:var(--muted); font-size:14px; margin-top:14px; }
   .link { color:var(--teal); word-break:break-all; font-size:14px; }
   footer { border-top:1px solid var(--line); padding:24px 0; text-align:center; color:var(--muted); font-size:13px; }
   @media print {
     .page { padding:40px; }
     .cover { min-height:auto; padding-top:80px; padding-bottom:80px; }
     .pagebreak { page-break-before:always; }
-    a { color:var(--ink); }
-    @page { margin:1.2cm; }
+    @page { margin:0; }
+    body { background:var(--bg); }
   }
 </style>
 </head>
@@ -65,7 +65,7 @@
   <div class="reframe">AI-подписка — это не инвестиция.<br>Это аренда воздуха.</div>
   <p>И есть второй слой боли. Ты не владеешь ничем. Аккаунт могут забанить за «вход из другой страны» — без писем, без возврата. Полгода работы исчезают за секунду.</p>
   <div class="box">
-    <p class="muted" style="margin:0;">Anthropic за месяц забанил около 2 млн аккаунтов. У OpenAI — массовые блокировки по гео. Ты строишь на чужой земле, с которой тебя могут согнать в любой день.</p>
+    <p style="margin:0;">Anthropic за месяц забанил около 2 млн аккаунтов. У OpenAI — массовые блокировки по гео. Ты строишь на чужой земле, с которой тебя могут согнать в любой день.</p>
   </div>
 </section>
 
@@ -107,7 +107,7 @@
   <div class="step"><b>3. Используешь готовые материалы.</b><br><span class="muted">Внутри — шаблоны постов, разборы, промо. Не надо придумывать с нуля. Бери и адаптируй под свой голос.</span></div>
   <div class="step"><b>4. Получаешь первую выплату.</b><br><span class="muted">Первый человек зашёл по ссылке и купил — €75 прилетают в ближайшую полночь UTC. Дальше это просто повторяется.</span></div>
   <div class="box">
-    <p style="margin:0;"><b>Реальный ориентир.</b> Чтобы выйти на €2000+ в месяц, достаточно микса: ~27 рефералов на €150, или 10 на €405, или 3 на €1440. Один активный месяц в твоём канале — и подписка окупает сама себя.</p>
+    <p style="margin:0;"><b style="color:var(--fg);">Реальный ориентир.</b> Чтобы выйти на €2000+ в месяц, достаточно микса: ~27 рефералов на €150, или 10 на €405, или 3 на €1440. Один активный месяц в твоём канале — и подписка окупает сама себя.</p>
   </div>
 </section>
 
@@ -119,7 +119,7 @@
 
   <div class="cta-box">
     <h2>Зайти по Blogger-модели</h2>
-    <p style="color:#B9B9C8;margin:0;">€150 / 30 дней · 50% с каждой покупки · USDC каждую ночь</p>
+    <p style="color:var(--muted);margin:0;">€150 / 30 дней · 50% с каждой покупки · USDC каждую ночь</p>
     <a href="https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI">Зарегистрироваться в Quanta →</a>
     <div class="sub">ссылка: quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI</div>
   </div>

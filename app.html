@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Quanta — посчитай свою окупаемость</title>
+<meta name="robots" content="noindex" />
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+  :root {
+    --bg: #07070C;
+    --surface: #0F0F18;
+    --surface-2: #15151F;
+    --fg: #F4F4F7;
+    --muted: #9A9AA8;
+    --purple: #7C5BFF;
+    --teal: #00E5C7;
+    --border: #20202E;
+    --border-strong: #2C2C3E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+    padding: 18px 16px 90px;
+  }
+  h1 { font-size: 21px; letter-spacing: -0.02em; margin-bottom: 4px; }
+  h1 span { color: var(--purple); }
+  .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
+
+  /* tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+  .tab {
+    flex: 1; text-align: center; padding: 10px 6px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer;
+  }
+  .tab.active { color: var(--fg); border-color: var(--teal); background: var(--surface-2); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 18px 16px; margin-bottom: 14px;
+  }
+
+  /* calculator */
+  .row-label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
+  .row-label b { color: var(--teal); }
+  input[type=range] { width: 100%; accent-color: #00E5C7; height: 28px; }
+  .tiers { display: flex; gap: 8px; margin: 14px 0 4px; }
+  .tier {
+    flex: 1; text-align: center; padding: 10px 4px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    cursor: pointer; font-size: 13px;
+  }
+  .tier small { display: block; color: var(--muted); font-size: 11px; }
+  .tier.active { border-color: var(--purple); }
+  .result {
+    text-align: center; padding: 18px 10px 14px;
+  }
+  .result .big { font-size: 34px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; }
+  .result .note { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .payback {
+    margin-top: 12px; padding: 10px 12px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--border-strong);
+    font-size: 13.5px;
+  }
+  .payback b { color: var(--purple); }
+
+  /* quiz */
+  .q { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+  .opt {
+    display: block; width: 100%; text-align: left; padding: 13px 14px;
+    margin-bottom: 8px; border-radius: 12px; font-size: 14px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--fg); cursor: pointer;
+  }
+  .opt:active { border-color: var(--teal); }
+  .progress { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+  .verdict-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .verdict-title em { color: var(--teal); font-style: normal; }
+  .verdict p { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .warn {
+    font-size: 12.5px; color: #FFB86B; background: rgba(255,184,107,0.08);
+    border: 1px solid rgba(255,184,107,0.25); border-radius: 10px;
+    padding: 9px 11px; margin-top: 10px;
+  }
+
+  /* CTA */
+  .cta-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: rgba(7,7,12,0.88); backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border);
+  }
+  .cta {
+    display: block; width: 100%; text-align: center;
+    background: var(--teal); color: #04110E; font-weight: 700;
+    font-size: 16px; padding: 14px; border-radius: 14px; border: none; cursor: pointer;
+  }
+  .restart { background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; text-decoration: underline; margin-top: 4px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<h1>Quanta<span>.</span> Посчитай сам</h1>
+<p class="sub">Без обещаний — только математика партнёрки 50%.</p>
+
+<div class="tabs">
+  <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Калькулятор</div>
+  <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Какой тариф мой</div>
+</div>
+
+<!-- ===== CALCULATOR ===== -->
+<div id="view-calc">
+  <div class="card">
+    <div class="row-label"><span>Продаж по твоей ссылке в месяц</span><b id="sales-val">2</b></div>
+    <input type="range" id="sales" min="0" max="20" step="1" value="2" oninput="recalc()" />
+
+    <div class="row-label" style="margin-top:14px"><span>Какой тариф покупают</span></div>
+    <div class="tiers">
+      <div class="tier active" data-price="150" onclick="pickTier(this)">Pro<small>€150</small></div>
+      <div class="tier" data-price="405" onclick="pickTier(this)">Business<small>€405</small></div>
+      <div class="tier" data-price="1440" onclick="pickTier(this)">Enterprise<small>€1440</small></div>
+    </div>
+  </div>
+
+  <div class="card result">
+    <div class="big" id="income">€150</div>
+    <div class="note">твоя комиссия в месяц (50% с каждой продажи)</div>
+    <div class="payback" id="payback"></div>
+  </div>
+
+  <div class="card" style="font-size:13.5px; color:var(--muted)">
+    Выплаты — в USDC, каждую полночь UTC, без холда.
+    Плюс сам продукт: 21+ AI-инструмент вместо стопки подписок.
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="view-quiz" class="hidden">
+  <div class="card" id="quiz-card"></div>
+</div>
+
+<div class="cta-bar">
+  <button class="cta" onclick="buy()">Купить — от €150</button>
+</div>
+
+<script>
+  const tg = window.Telegram ? window.Telegram.WebApp : null;
+  if (tg) { tg.ready(); tg.expand(); }
+
+  const REG_URL = "https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI&utm_source=tg_bot&utm_medium=miniapp";
+
+  /* ---- tabs ---- */
+  function showTab(name) {
+    document.getElementById('view-calc').classList.toggle('hidden', name !== 'calc');
+    document.getElementById('view-quiz').classList.toggle('hidden', name !== 'quiz');
+    document.getElementById('tab-calc').classList.toggle('active', name === 'calc');
+    document.getElementById('tab-quiz').classList.toggle('active', name === 'quiz');
+    if (name === 'quiz' && !quizStarted) startQuiz();
+  }
+
+  /* ---- calculator ---- */
+  let price = 150;
+  function pickTier(el) {
+    document.querySelectorAll('.tier').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    price = +el.dataset.price;
+    recalc();
+  }
+  function recalc() {
+    const sales = +document.getElementById('sales').value;
+    document.getElementById('sales-val').textContent = sales;
+    const income = sales * price * 0.5;
+    document.getElementById('income').textContent = '€' + income.toLocaleString('ru-RU');
+    const need = Math.ceil(150 / (price * 0.5));
+    const pb = document.getElementById('payback');
+    if (income >= 150) {
+      pb.innerHTML = '<b>Подписка €150 окупилась.</b> Сверху остаётся €' + (income - 150).toLocaleString('ru-RU') + ' — и это без учёта экономии на инструментах.';
+    } else {
+      pb.innerHTML = 'До окупаемости подписки €150 не хватает <b>' + (need - sales) + '</b> ' + plural(need - sales) + ' по тарифу €' + price + '.';
+    }
+  }
+  function plural(n) {
+    if (n % 10 === 1 && n % 100 !== 11) return 'продажи';
+    return 'продаж';
+  }
+
+  /* ---- quiz ---- */
+  let quizStarted = false, step = 0, score = { pro: 0, biz: 0, ent: 0 };
+  const QUESTIONS = [
+    { q: 'Кто ты сейчас?',
+      opts: [
+        ['Фрилансер / креатор, работаю сам', 'pro'],
+        ['Есть команда или малый бизнес', 'biz'],
+        ['Агентство / веду много клиентов', 'ent']
+      ]},
+    { q: 'Сколько контента нужно в месяц?',
+      opts: [
+        ['До 30 единиц — себе и 1-2 клиентам', 'pro'],
+        ['30–150 — несколько проектов', 'biz'],
+        ['150+ — поток на клиентов', 'ent']
+      ]},
+    { q: 'Что важнее в первый месяц?',
+      opts: [
+        ['Окупить вход партнёркой', 'pro'],
+        ['Снять рутину с команды', 'biz'],
+        ['Маржа: продавать контент дороже себестоимости', 'ent']
+      ]}
+  ];
+  const VERDICTS = {
+    pro: ['Pro — €150', 'Старт для одного. Окупается двумя продажами по партнёрке (50% с €150 = €75 × 2). Дальше — плюс.'],
+    biz: ['Business — €405', 'Для команды и нескольких проектов. Окупаемость: 6 продаж Pro по твоей ссылке — или экономия на стопке подписок с первого месяца.'],
+    ent: ['Enterprise — €1440', 'Для агентского объёма. Считай не подписку, а себестоимость: контент для клиентов при марже агентства окупает её в первый месяц.']
+  };
+
+  function startQuiz() {
+    quizStarted = true; step = 0; score = { pro: 0, biz: 0, ent: 0 };
+    renderQ();
+  }
+  function renderQ() {
+    const card = document.getElementById('quiz-card');
+    if (step >= QUESTIONS.length) {
+      const key = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
+      const [title, text] = VERDICTS[key];
+      card.innerHTML =
+        '<div class="verdict"><div class="verdict-title">Твой тариф: <em>' + title + '</em></div>' +
+        '<p>' + text + '</p>' +
+        '<div class="warn">⚠️ Модель участия (Blogger / Protocol) выбирается один раз при оплате и не меняется. Если сомневаешься — спроси в боте до покупки.</div>' +
+        '<button class="restart" onclick="startQuiz()">Пройти заново</button></div>';
+      return;
+    }
+    const item = QUESTIONS[step];
+    card.innerHTML =
+      '<div class="progress">Вопрос ' + (step + 1) + ' из ' + QUESTIONS.length + '</div>' +
+      '<div class="q">' + item.q + '</div>' +
+      item.opts.map((o, i) => '<button class="opt" onclick="answer(' + i + ')">' + o[0] + '</button>').join('');
+  }
+  function answer(i) {
+    score[QUESTIONS[step].opts[i][1]]++;
+    step++;
+    renderQ();
+  }
+
+  /* ---- CTA ---- */
+  function buy() {
+    if (tg) { tg.openLink(REG_URL); } else { window.open(REG_URL, '_blank'); }
+  }
+
+  recalc();
+</script>
+</body>
+</html>

@@ -23,18 +23,19 @@
     background: var(--bg); color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     line-height: 1.5; -webkit-font-smoothing: antialiased;
-    padding: 18px 16px 90px;
+    padding: 18px 16px 130px;
   }
   h1 { font-size: 21px; letter-spacing: -0.02em; margin-bottom: 4px; }
   h1 span { color: var(--purple); }
   .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; }
 
   /* tabs */
-  .tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
   .tab {
-    flex: 1; text-align: center; padding: 10px 6px; border-radius: 12px;
+    flex: 1 1 30%; text-align: center; padding: 9px 4px; border-radius: 12px;
     background: var(--surface); border: 1px solid var(--border);
-    font-size: 14px; font-weight: 600; color: var(--muted); cursor: pointer;
+    font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer;
+    white-space: nowrap;
   }
   .tab.active { color: var(--fg); border-color: var(--teal); background: var(--surface-2); }
 
@@ -110,6 +111,7 @@
 <div class="tabs">
   <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Доход</div>
   <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Тариф</div>
+  <div class="tab" id="tab-path" onclick="showTab('path')">🎯 Путь</div>
   <div class="tab" id="tab-tools" onclick="showTab('tools')">🧠 Внутри</div>
   <div class="tab" id="tab-faq" onclick="showTab('faq')">❓ FAQ</div>
 </div>
@@ -177,6 +179,22 @@
   </div>
 </div>
 
+<!-- ===== PATH (чеклист до первой продажи) ===== -->
+<div id="view-path" class="hidden">
+  <div class="card">
+    <div class="q">Путь к первой продаже</div>
+    <div style="background:var(--surface-2); border-radius:8px; height:10px; overflow:hidden; margin-bottom:6px">
+      <div id="path-bar" style="background:var(--teal); height:100%; width:0%"></div>
+    </div>
+    <div id="path-pct" style="font-size:12px; color:var(--muted); margin-bottom:12px">0%</div>
+    <div id="path-list"></div>
+  </div>
+  <div class="card" style="font-size:13px; color:var(--muted)">
+    Галочки сохраняются на этом устройстве. Реальный темп — 2-4 недели
+    до первой продажи, и ноль в первые недели — нормально.
+  </div>
+</div>
+
 <!-- ===== FAQ ===== -->
 <div id="view-faq" class="hidden">
   <div class="card">
@@ -210,6 +228,10 @@
 
 <div class="cta-bar">
   <button class="cta" onclick="buy()">Купить — от €150</button>
+  <div style="font-size:10.5px; color:var(--muted); text-align:center; margin-top:6px">
+    Доход не гарантирован и зависит от твоих действий. 50% — условия
+    партнёрской программы, а не обещание заработка.
+  </div>
 </div>
 
 <script>
@@ -218,14 +240,52 @@
 
   const REG_URL = "https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI&utm_source=tg_bot&utm_medium=miniapp";
 
+  /* ---- path checklist ---- */
+  const PATH_STEPS = [
+    'Забрал PDF-разбор в боте',
+    'Посчитал свою математику в калькуляторе',
+    'Завёл USDC-кошелёк (MetaMask / Trust Wallet)',
+    'Прошёл квиз — понял, какая модель моя',
+    'Задал вопрос в Discord до покупки',
+    'Купил подписку (модель выбрана осознанно)',
+    'Разобрался в BrandMind на своём проекте',
+    'Составил список 10 человек, кому полезно',
+    'Провёл первые 3 диалога (без ссылки в лоб)',
+    'Первая продажа 🎉'
+  ];
+  function pathState() {
+    try { return JSON.parse(localStorage.getItem('qpath') || '[]'); }
+    catch (e) { return []; }
+  }
+  function renderPath() {
+    const done = pathState();
+    document.getElementById('path-list').innerHTML = PATH_STEPS.map((s, i) =>
+      '<label style="display:flex; gap:10px; align-items:flex-start; padding:7px 0; font-size:14px; cursor:pointer">' +
+      '<input type="checkbox" style="accent-color:#00E5C7; margin-top:2px" ' +
+      (done.includes(i) ? 'checked ' : '') + 'onchange="togglePath(' + i + ')">' +
+      '<span style="' + (done.includes(i) ? 'color:var(--muted); text-decoration:line-through' : '') + '">' + s + '</span></label>'
+    ).join('');
+    const pct = Math.round(done.length / PATH_STEPS.length * 100);
+    document.getElementById('path-bar').style.width = pct + '%';
+    document.getElementById('path-pct').textContent =
+      pct === 100 ? '100% — путь пройден 🔥' : pct + '%';
+  }
+  function togglePath(i) {
+    let done = pathState();
+    done = done.includes(i) ? done.filter(x => x !== i) : done.concat(i);
+    localStorage.setItem('qpath', JSON.stringify(done));
+    renderPath();
+  }
+
   /* ---- tabs ---- */
-  const TABS = ['calc', 'quiz', 'tools', 'faq'];
+  const TABS = ['calc', 'quiz', 'path', 'tools', 'faq'];
   function showTab(name) {
     TABS.forEach(t => {
       document.getElementById('view-' + t).classList.toggle('hidden', t !== name);
       document.getElementById('tab-' + t).classList.toggle('active', t === name);
     });
     if (name === 'quiz' && !quizStarted) startQuiz();
+    if (name === 'path') renderPath();
   }
 
   /* ---- calculator ---- */

@@ -108,15 +108,20 @@
 <p class="sub">Без обещаний — только математика партнёрки 50%.</p>
 
 <div class="tabs">
-  <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Калькулятор</div>
-  <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Какой тариф мой</div>
+  <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Доход</div>
+  <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Тариф</div>
+  <div class="tab" id="tab-tools" onclick="showTab('tools')">🧠 Внутри</div>
+  <div class="tab" id="tab-faq" onclick="showTab('faq')">❓ FAQ</div>
 </div>
 
 <!-- ===== CALCULATOR ===== -->
 <div id="view-calc">
   <div class="card">
     <div class="row-label"><span>Продаж по твоей ссылке в месяц</span><b id="sales-val">2</b></div>
-    <input type="range" id="sales" min="0" max="20" step="1" value="2" oninput="recalc()" />
+    <input type="range" id="sales" min="0" max="100" step="1" value="2" oninput="recalc()" />
+    <div class="row-label" style="margin-top:4px; font-size:11.5px; color:var(--muted)">
+      <span>0</span><span>лимита нет — шкала до 100 для наглядности</span><span>100</span>
+    </div>
 
     <div class="row-label" style="margin-top:14px"><span>Какой тариф покупают</span></div>
     <div class="tiers">
@@ -143,6 +148,66 @@
   <div class="card" id="quiz-card"></div>
 </div>
 
+<!-- ===== TOOLS (что внутри Quanta) ===== -->
+<div id="view-tools" class="hidden">
+  <div class="card">
+    <div class="q">🧠 BrandMind — ядро</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Нейроагент-маркетолог. Объединяет 21+ инструмент экосистемы и
+      генерит контент в стиле твоего бренда: инструменты работают вместе
+      и знают контекст друг друга — не как 5 разрозненных подписок.
+    </p>
+  </div>
+  <div class="card">
+    <div class="q">🎨 PromoStudio</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Промо-материалы и маркетинг-инструменты: креативы для рекламы
+      и продвижения без дизайнера.
+    </p>
+  </div>
+  <div class="card">
+    <div class="q">🧪 Q-Lab · 📰 AI News · 🎓 AI Course</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Экспериментальные AI-фичи раньше всех · агрегатор главных
+      AI-новостей · обучение работе с экосистемой.
+    </p>
+  </div>
+  <div class="card" style="font-size:13.5px; color:var(--muted)">
+    Всё — под одной подпиской и одним входом (Quanta ID).
+  </div>
+</div>
+
+<!-- ===== FAQ ===== -->
+<div id="view-faq" class="hidden">
+  <div class="card">
+    <div class="q">Как платят по партнёрке?</div>
+    <p style="font-size:14px; color:var(--muted)">
+      50% с каждой подписки по твоей ссылке. USDC на твой кошелёк,
+      каждую полночь UTC, без холда и минималки.
+    </p>
+  </div>
+  <div class="card">
+    <div class="q">Чем платить за подписку?</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Криптой (USDC). Тарифы: €150 / €405 / €1440 за 30 дней.
+    </p>
+  </div>
+  <div class="card">
+    <div class="q">Blogger или Protocol?</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Модель участия выбирается <b style="color:#FFB86B">один раз при
+      оплате и не меняется</b>. Пройди квиз во вкладке «Тариф», а если
+      сомневаешься — спроси в Discord до покупки.
+    </p>
+  </div>
+  <div class="card">
+    <div class="q">Где задать вопрос живым людям?</div>
+    <p style="font-size:14px; color:var(--muted)">
+      Комьюнити Quanta живёт в Discord — ссылка в меню бота.
+    </p>
+  </div>
+</div>
+
 <div class="cta-bar">
   <button class="cta" onclick="buy()">Купить — от €150</button>
 </div>
@@ -154,11 +219,12 @@
   const REG_URL = "https://quanta-tech.org/auth/registration?code=ML2DYYBOQQCTC6QI&utm_source=tg_bot&utm_medium=miniapp";
 
   /* ---- tabs ---- */
+  const TABS = ['calc', 'quiz', 'tools', 'faq'];
   function showTab(name) {
-    document.getElementById('view-calc').classList.toggle('hidden', name !== 'calc');
-    document.getElementById('view-quiz').classList.toggle('hidden', name !== 'quiz');
-    document.getElementById('tab-calc').classList.toggle('active', name === 'calc');
-    document.getElementById('tab-quiz').classList.toggle('active', name === 'quiz');
+    TABS.forEach(t => {
+      document.getElementById('view-' + t).classList.toggle('hidden', t !== name);
+      document.getElementById('tab-' + t).classList.toggle('active', t === name);
+    });
     if (name === 'quiz' && !quizStarted) startQuiz();
   }
 

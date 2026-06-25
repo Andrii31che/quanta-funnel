@@ -23,7 +23,12 @@
     background: var(--bg); color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     line-height: 1.5; -webkit-font-smoothing: antialiased;
+    max-width: 480px; margin: 0 auto;
     padding: 18px 16px 130px;
+  }
+  @media (min-width: 600px) {
+    body { padding: 28px 20px 130px; }
+    h1 { font-size: 24px; }
   }
   h1 { font-size: 21px; letter-spacing: -0.02em; margin-bottom: 4px; }
   h1 span { color: var(--purple); }
@@ -89,7 +94,8 @@
 
   /* CTA */
   .cta-bar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    position: fixed; left: 50%; transform: translateX(-50%); bottom: 0; z-index: 50;
+    width: 100%; max-width: 480px;
     padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
     background: rgba(7,7,12,0.88); backdrop-filter: blur(14px);
     border-top: 1px solid var(--border);
@@ -106,7 +112,7 @@
 <body>
 
 <h1>Quanta<span>.</span> Посчитай сам</h1>
-<p class="sub">Без обещаний — только математика партнёрки 50%.</p>
+<p class="sub">Без обещаний — только математика твоей доли как блогера.</p>
 
 <div class="tabs">
   <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Доход</div>
@@ -127,21 +133,21 @@
 
     <div class="row-label" style="margin-top:14px"><span>Какой тариф покупают</span></div>
     <div class="tiers">
-      <div class="tier active" data-price="150" onclick="pickTier(this)">Pro<small>€150</small></div>
-      <div class="tier" data-price="405" onclick="pickTier(this)">Business<small>€405</small></div>
-      <div class="tier" data-price="1440" onclick="pickTier(this)">Enterprise<small>€1440</small></div>
+      <div class="tier active" data-price="150" onclick="pickTier(this)">30 дней<small>$150</small></div>
+      <div class="tier" data-price="405" onclick="pickTier(this)">90 дней<small>$405</small></div>
+      <div class="tier" data-price="1440" onclick="pickTier(this)">360 дней<small>$1440</small></div>
     </div>
   </div>
 
   <div class="card result">
-    <div class="big" id="income">€150</div>
-    <div class="note">твоя комиссия в месяц (50% с каждой продажи)</div>
+    <div class="big" id="income">$90</div>
+    <div class="note">твоя доля в месяц (30% с того, кто зашёл по твоей ссылке)</div>
     <div class="payback" id="payback"></div>
   </div>
 
   <div class="card" style="font-size:13.5px; color:var(--muted)">
-    Выплаты — в USDC, каждую полночь UTC, без холда.
-    Плюс сам продукт: 21+ AI-инструмент вместо стопки подписок.
+    Начисления — в USDC, каждый день, на твой кошелёк.
+    Плюс сам продукт: все AI-продукты экосистемы вместо стопки подписок.
   </div>
 </div>
 
@@ -153,29 +159,32 @@
 <!-- ===== TOOLS (что внутри Quanta) ===== -->
 <div id="view-tools" class="hidden">
   <div class="card">
-    <div class="q">🧠 BrandMind — ядро</div>
+    <div class="q">🎨 PromoStudio (+ Brand Mind)</div>
     <p style="font-size:14px; color:var(--muted)">
-      Нейроагент-маркетолог. Объединяет 21+ инструмент экосистемы и
-      генерит контент в стиле твоего бренда: инструменты работают вместе
-      и знают контекст друг друга — не как 5 разрозненных подписок.
+      AI-студия, которая выдаёт готовый маркетинговый контент, а не черновик:
+      посты, изображения, видео, лендинги — в твоём фирменном голосе через
+      Brand Mind. Инструменты работают вместе и знают контекст друг друга.
     </p>
   </div>
   <div class="card">
-    <div class="q">🎨 PromoStudio</div>
+    <div class="q">🆔 Quanta ID · 🧪 Quanta Lab</div>
     <p style="font-size:14px; color:var(--muted)">
-      Промо-материалы и маркетинг-инструменты: креативы для рекламы
-      и продвижения без дизайнера.
+      Quanta ID — один вход во все продукты по одной лицензии: лицензия,
+      кредиты, активность и твоя личная ссылка. Quanta Lab — практикум:
+      учишься работать с AI на тех же инструментах.
     </p>
   </div>
   <div class="card">
-    <div class="q">🧪 Q-Lab · 📰 AI News · 🎓 AI Course</div>
+    <div class="q">🛠 Workspace · 🎬 Vioxen · 🤖 Telegram-бот</div>
     <p style="font-size:14px; color:var(--muted)">
-      Экспериментальные AI-фичи раньше всех · агрегатор главных
-      AI-новостей · обучение работе с экосистемой.
+      Workspace — прямые AI-инструменты: текст-в-видео, генерация и апскейл
+      картинок, удаление фона, 3D, копирайтинг, переводчик, SEO. Vioxen —
+      видео для маркетинга из твоих вводных. Бот — баланс, начисления и
+      статистика прямо в Telegram.
     </p>
   </div>
   <div class="card" style="font-size:13.5px; color:var(--muted)">
-    Всё — под одной подпиской и одним входом (Quanta ID).
+    Всё — под одной лицензией и одним входом (Quanta ID).
   </div>
 </div>
 
@@ -198,16 +207,18 @@
 <!-- ===== FAQ ===== -->
 <div id="view-faq" class="hidden">
   <div class="card">
-    <div class="q">Как платят по партнёрке?</div>
+    <div class="q">Как платят по модели Блогер?</div>
     <p style="font-size:14px; color:var(--muted)">
-      50% с каждой подписки по твоей ссылке. USDC на твой кошелёк,
-      каждую полночь UTC, без холда и минималки.
+      30% с того, кто зашёл напрямую по твоей ссылке Quanta ID, и 15%
+      с того, кто на шаг дальше. USDC на твой кошелёк, каждый день,
+      пока активна лицензия.
     </p>
   </div>
   <div class="card">
-    <div class="q">Чем платить за подписку?</div>
+    <div class="q">Чем платить за лицензию?</div>
     <p style="font-size:14px; color:var(--muted)">
-      Криптой (USDC). Тарифы: €150 / €405 / €1440 за 30 дней.
+      Криптой (USDC, USDT и другие). Лицензия: $150 / 30 дней,
+      $405 / 90 дней, $1440 / 360 дней. Месячная предоплата, без автопродления.
     </p>
   </div>
   <div class="card">
@@ -227,10 +238,10 @@
 </div>
 
 <div class="cta-bar">
-  <button class="cta" onclick="buy()">Купить — от €150</button>
+  <button class="cta" onclick="buy()">Купить — от $150</button>
   <div style="font-size:10.5px; color:var(--muted); text-align:center; margin-top:6px">
-    Доход не гарантирован и зависит от твоих действий. 50% — условия
-    партнёрской программы, а не обещание заработка.
+    Доход не гарантирован и зависит от твоих действий. 30% и 15% —
+    условия партнёрской программы, а не обещание заработка.
   </div>
 </div>
 
@@ -247,8 +258,8 @@
     'Завёл USDC-кошелёк (MetaMask / Trust Wallet)',
     'Прошёл квиз — понял, какая модель моя',
     'Задал вопрос в Discord до покупки',
-    'Купил подписку (модель выбрана осознанно)',
-    'Разобрался в BrandMind на своём проекте',
+    'Купил лицензию (модель выбрана осознанно)',
+    'Разобрался в PromoStudio на своём проекте',
     'Составил список 10 человек, кому полезно',
     'Провёл первые 3 диалога (без ссылки в лоб)',
     'Первая продажа 🎉'
@@ -299,14 +310,14 @@
   function recalc() {
     const sales = +document.getElementById('sales').value;
     document.getElementById('sales-val').textContent = sales;
-    const income = sales * price * 0.5;
-    document.getElementById('income').textContent = '€' + income.toLocaleString('ru-RU');
-    const need = Math.ceil(150 / (price * 0.5));
+    const income = sales * price * 0.30;
+    document.getElementById('income').textContent = '$' + income.toLocaleString('ru-RU');
+    const need = Math.ceil(150 / (price * 0.30));
     const pb = document.getElementById('payback');
     if (income >= 150) {
-      pb.innerHTML = '<b>Подписка €150 окупилась.</b> Сверху остаётся €' + (income - 150).toLocaleString('ru-RU') + ' — и это без учёта экономии на инструментах.';
+      pb.innerHTML = '<b>Лицензия $150 окупилась.</b> Сверху остаётся $' + (income - 150).toLocaleString('ru-RU') + ' — и это без учёта экономии на инструментах.';
     } else {
-      pb.innerHTML = 'До окупаемости подписки €150 не хватает <b>' + (need - sales) + '</b> ' + plural(need - sales) + ' по тарифу €' + price + '.';
+      pb.innerHTML = 'До окупаемости лицензии $150 не хватает <b>' + (need - sales) + '</b> ' + plural(need - sales) + ' по тарифу $' + price + '.';
     }
   }
   function plural(n) {
@@ -337,9 +348,9 @@
       ]}
   ];
   const VERDICTS = {
-    pro: ['Pro — €150', 'Старт для одного. Окупается двумя продажами по партнёрке (50% с €150 = €75 × 2). Дальше — плюс.'],
-    biz: ['Business — €405', 'Для команды и нескольких проектов. Окупаемость: 6 продаж Pro по твоей ссылке — или экономия на стопке подписок с первого месяца.'],
-    ent: ['Enterprise — €1440', 'Для агентского объёма. Считай не подписку, а себестоимость: контент для клиентов при марже агентства окупает её в первый месяц.']
+    pro: ['30 дней — $150', 'Короткий старт: 200 млн кредитов. Попробовать ритм без длинных обязательств — каждый месяц решаешь сам, продолжать или нет.'],
+    biz: ['90 дней — $405', 'Для команды и нескольких проектов: 600 млн кредитов и цена месяца ниже, чем на коротком сроке. Меньше платёжной рутины.'],
+    ent: ['360 дней — $1440', 'Для потока на клиентов: 2,4 млрд кредитов и самая низкая цена за месяц. Считай не лицензию, а себестоимость контента при марже агентства.']
   };
 
   function startQuiz() {

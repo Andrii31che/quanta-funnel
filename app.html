@@ -116,7 +116,7 @@
 
 <div class="tabs">
   <div class="tab active" id="tab-calc" onclick="showTab('calc')">💰 Доход</div>
-  <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Тариф</div>
+  <div class="tab" id="tab-quiz" onclick="showTab('quiz')">🧭 Срок</div>
   <div class="tab" id="tab-path" onclick="showTab('path')">🎯 Путь</div>
   <div class="tab" id="tab-tools" onclick="showTab('tools')">🧠 Внутри</div>
   <div class="tab" id="tab-faq" onclick="showTab('faq')">❓ FAQ</div>
@@ -131,7 +131,7 @@
       <span>0</span><span>лимита нет — шкала до 100 для наглядности</span><span>100</span>
     </div>
 
-    <div class="row-label" style="margin-top:14px"><span>Какой тариф покупают</span></div>
+    <div class="row-label" style="margin-top:14px"><span>Какой срок лицензии покупают</span></div>
     <div class="tiers">
       <div class="tier active" data-price="150" onclick="pickTier(this)">30 дней<small>$150</small></div>
       <div class="tier" data-price="405" onclick="pickTier(this)">90 дней<small>$405</small></div>
@@ -225,7 +225,7 @@
     <div class="q">Blogger или Protocol?</div>
     <p style="font-size:14px; color:var(--muted)">
       Модель участия выбирается <b style="color:#FFB86B">один раз при
-      оплате и не меняется</b>. Пройди квиз во вкладке «Тариф», а если
+      оплате и не меняется</b>. Пройди квиз во вкладке «Срок», а если
       сомневаешься — спроси в Discord до покупки.
     </p>
   </div>
@@ -317,7 +317,7 @@
     if (income >= 150) {
       pb.innerHTML = '<b>Лицензия $150 окупилась.</b> Сверху остаётся $' + (income - 150).toLocaleString('ru-RU') + ' — и это без учёта экономии на инструментах.';
     } else {
-      pb.innerHTML = 'До окупаемости лицензии $150 не хватает <b>' + (need - sales) + '</b> ' + plural(need - sales) + ' по тарифу $' + price + '.';
+      pb.innerHTML = 'До окупаемости лицензии $150 не хватает <b>' + (need - sales) + '</b> ' + plural(need - sales) + ' по лицензии $' + price + '.';
     }
   }
   function plural(n) {
@@ -363,7 +363,7 @@
       const key = Object.entries(score).sort((a, b) => b[1] - a[1])[0][0];
       const [title, text] = VERDICTS[key];
       card.innerHTML =
-        '<div class="verdict"><div class="verdict-title">Твой тариф: <em>' + title + '</em></div>' +
+        '<div class="verdict"><div class="verdict-title">Твой срок: <em>' + title + '</em></div>' +
         '<p>' + text + '</p>' +
         '<div class="warn">⚠️ Модель участия (Blogger / Protocol) выбирается один раз при оплате и не меняется. Если сомневаешься — спроси в боте до покупки.</div>' +
         '<button class="restart" onclick="startQuiz()">Пройти заново</button></div>';
